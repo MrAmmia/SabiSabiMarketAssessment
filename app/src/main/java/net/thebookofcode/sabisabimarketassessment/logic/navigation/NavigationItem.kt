@@ -1,6 +1,7 @@
 package net.thebookofcode.sabisabimarketassessment.logic.navigation
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Info
@@ -47,6 +48,6 @@ sealed class NavigationItem(
     object Todo : NavigationItem(
         route = "todo",
         title = "TODO",
-        icon = Icons.Default.List
+        icon = Icons.AutoMirrored.Filled.List
     )
 }

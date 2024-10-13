@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">SabiSabi Market Assessment</string>
+    <string name="app_name">SabiSabi Market</string>
+    <string name="opened_drawer">Drawer Opened</string>
+    <string name="closed_drawer">Drawer Closed</string>
 </resources>

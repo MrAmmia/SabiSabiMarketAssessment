@@ -69,4 +69,7 @@ dependencies {
 
     // Navigation
     implementation (libs.androidx.navigation.compose)
+
+    // WindowsSize
+    implementation (libs.androidx.material3.window.size)
 }

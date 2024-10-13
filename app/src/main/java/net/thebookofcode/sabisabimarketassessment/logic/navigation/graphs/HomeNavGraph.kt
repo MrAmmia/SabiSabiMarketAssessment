@@ -14,10 +14,10 @@ import net.thebookofcode.sabisabimarketassessment.ui.screens.home.ShelfScreen
 import net.thebookofcode.sabisabimarketassessment.ui.screens.home.TodoScreen
 
 @Composable
-fun HomeNavGraph(navController: NavHostController, modifier: Modifier) {
+fun HomeNavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Expense.route
+        startDestination = Shelf.route
     ) {
         composable(
             route = Shelf.route
