@@ -6,10 +6,11 @@ import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.windowsizeclass.WindowHeightSizeClass
+import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -27,15 +28,14 @@ import net.thebookofcode.sabisabimarketassessment.ui.theme.SabiSabiMarketAssessm
 
 @Composable
 fun HomeScreen(
-    widthSizeClass: WindowWidthSizeClass
+    windowSizeClass: WindowSizeClass
 ) {
     SabiSabiMarketAssessmentTheme {
         val navController = rememberNavController()
         val coroutineScope = rememberCoroutineScope()
-        val isDrawerActive = widthSizeClass == WindowWidthSizeClass.Compact
-        val isExpanded = widthSizeClass == WindowWidthSizeClass.Expanded
+        val isShortHeight = windowSizeClass.heightSizeClass == WindowHeightSizeClass.Compact
+        val isExpanded = windowSizeClass.widthSizeClass == WindowWidthSizeClass.Expanded
         val sizeAwareDrawerState = rememberSizeAwareDrawerState(isExpanded)
-        var selectedItemIndex by rememberSaveable { mutableIntStateOf(0) }
         var selectedItemRoute by rememberSaveable { mutableStateOf(Shelf.route) }
         val destinations = listOf(
             Shelf,
@@ -93,6 +93,7 @@ fun HomeScreen(
                 Row {
                     AppNavRail(
                         destinations = destinations,
+                        isShortHeight = isShortHeight,
                         navigate = { navItem ->
                             selectedItemRoute = navItem.route
                             navController.navigate(navItem.route) {

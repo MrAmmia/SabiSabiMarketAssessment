@@ -17,10 +17,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -74,7 +70,7 @@ fun DrawerHeader() {
 fun Drawer(
     shouldShowHeader: Boolean,
     destinations: List<NavigationItem>,
-    selectedItemRoute:String,
+    selectedItemRoute: String,
     navigate: (NavigationItem) -> Unit
 ) {
     ModalDrawerSheet {
@@ -99,7 +95,8 @@ fun Drawer(
 fun AppNavRail(
     destinations: List<NavigationItem>,
     modifier: Modifier = Modifier,
-    selectedItemRoute:String,
+    isShortHeight: Boolean,
+    selectedItemRoute: String,
     navigate: (NavigationItem) -> Unit
 ) {
     NavigationRail(
@@ -108,17 +105,25 @@ fun AppNavRail(
         },
         modifier = modifier
     ) {
-        destinations.forEach { destination ->
-            NavigationRailItem(
-                selected = destination.route == selectedItemRoute,
-                onClick = {
-                    navigate(destination)
-                },
-                icon = { Icon(destination.icon, destination.title) },
-                label = { Text(text = destination.title) },
-                alwaysShowLabel = true
-            )
-
+        Column(
+            modifier = Modifier
+                .fillMaxHeight(),
+            verticalArrangement = if (isShortHeight) Arrangement.Center else Arrangement.spacedBy(
+                space = 16.dp,
+                alignment = Alignment.CenterVertically
+            ),
+        ) {
+            destinations.forEach { destination ->
+                NavigationRailItem(
+                    selected = destination.route == selectedItemRoute,
+                    onClick = {
+                        navigate(destination)
+                    },
+                    icon = { Icon(destination.icon, destination.title) },
+                    label = { Text(text = destination.title) },
+                    alwaysShowLabel = true
+                )
+            }
         }
     }
 }

@@ -14,8 +14,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val widthSizeClass = calculateWindowSizeClass(this).widthSizeClass
-            HomeScreen(widthSizeClass = widthSizeClass)
+            val windowSizeClass = calculateWindowSizeClass(this)
+            HomeScreen(windowSizeClass = windowSizeClass)
         }
     }
 }
